@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter One — Old Hawarden Castle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #1a1714;
+      --parchment: #f5f0e8;
+      --parchment-dark: #ede5d4;
+      --fog: #8a8078;
+      --rust: #7a3b2e;
+      --gold: #b89a5a;
+      --gold-light: #d4b87a;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--parchment);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      line-height: 1.85;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* === HEADER === */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 80px 2rem 60px;
+      border-bottom: 1px solid var(--gold);
+      background: linear-gradient(180deg, var(--parchment-dark) 0%, var(--parchment) 100%);
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 0.2s;
+    }
+
+    .chapter-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .chapter-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .chapter-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--fog);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .chapter-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--fog);
+      margin-top: 0.2rem;
+    }
+
+    .header-ornament {
+      display: block;
+      margin: 2rem auto 0;
+      width: 120px;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    /* === MAIN CONTENT === */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 70px 2rem 100px;
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 0.6s;
+    }
+
+    /* Drop cap */
+    .drop-cap::first-letter {
+      font-family: 'Cinzel', serif;
+      font-size: 5em;
+      font-weight: 500;
+      float: left;
+      line-height: 0.72;
+      margin: 0.08em 0.1em 0 0;
+      color: var(--rust);
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* Short punchy lines — keep them centered and dramatic */
+    .beat {
+      text-align: center;
+      font-style: italic;
+      color: var(--fog);
+      margin: 2em 0;
+      font-size: 1.05em;
+      letter-spacing: 0.02em;
+    }
+
+    /* Dialogue emphasis */
+    p strong {
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Section break ornament */
+    .section-break {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3em 0;
+    }
+
+    .section-break::before,
+    .section-break::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    }
+
+    .section-break-glyph {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* === FOOTER === */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--parchment-dark);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--fog);
+      text-transform: uppercase;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    footer a:hover {
+      border-color: var(--gold);
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 600px) {
+      body { font-size: 18px; }
+      main { padding: 50px 1.4rem 80px; }
+      header { padding: 60px 1.4rem 50px; }
+      .drop-cap::first-letter { font-size: 4em; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="chapter-label">Chapter One</p>
+    <h1 class="chapter-title">Old Hawarden Castle</h1>
+    <p class="chapter-subtitle">Castell Penarlâg &nbsp;·&nbsp; Hawarden, Flintshire, Wales</p>
+    <p class="chapter-date">October 1938</p>
+    <svg class="header-ornament" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="10" x2="48" y2="10" stroke="currentColor" stroke-width="0.75"/>
+      <circle cx="60" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="0.75"/>
+      <circle cx="60" cy="10" r="1.5" fill="currentColor"/>
+      <line x1="72" y1="10" x2="120" y2="10" stroke="currentColor" stroke-width="0.75"/>
+    </svg>
+  </header>
+
+  <main>
+
+    <p class="drop-cap">The gate was wrong.</p>
+
+    <p>Ceci knew it before she knew anything else. She stood at the base of the archway, one hand braced against damp stone, her breath coming faster than it should for someone who had only walked twenty minutes uphill. The red wooden gate in front of her was closed.</p>
+
+    <p class="beat">That wasn't right.</p>
+
+    <p>It had been open earlier. Wide open. A bored old man was collecting coins beside a little barred window set into the wall. Three pounds for entry and a brochure she only half read while walking up the path. Now, there was no window, no chair, no man. Just stone.</p>
+
+    <p>A low roll of thunder moved across the sky, already fading into the distance. The storm had passed, but the air still felt heavy, as if it hadn't quite decided to let go of it. The grass under her boots was slick and flattened, and when she shifted her weight, her stomach turned with a sudden, disorienting lurch.</p>
+
+    <p>"Okay," she said, because saying things out loud helped. "Okay, think."</p>
+
+    <p>Her voice disappeared into the open air. This silence was nothing like the soft hush of a library or the controlled quiet of a reading room. It stretched too far, like it had no walls to contain it.</p>
+
+    <p>She turned.</p>
+
+    <p>The ruins rose up the hill behind her, jagged gray against a sky that was beginning to lighten at the edges. Morning light. Low, pale, wrong.</p>
+
+    <p>Her heart stuttered.</p>
+
+    <p>"I didn't," she started, then pressed her fingers hard into her temple. "I didn't stay out here all night."</p>
+
+    <p>But she must have.</p>
+
+    <p>Her clothes were damp. Her hair hung in heavy, tangled ropes down her back. The spot just inside the archway where she must have been lying was darkened, the grass crushed beneath the weight of her body. She looked back at the gate.</p>
+
+    <p class="beat">Locked.</p>
+
+    <p>Earlier, there was a latch. A transaction. A human being who took her money and refused her small talk with impressive efficiency.</p>
+
+    <p>Now? Nothing.</p>
+
+    <p>A thin thread of unease tightened in her chest.</p>
+
+    <p>"Ceci, think," she muttered, quieter now. She reached into her jacket pocket and pulled out her phone.</p>
+
+    <p>No signal.</p>
+
+    <p>Fine. Rural Wales. Thick stone walls. Annoying, but normal. She exhaled, willing her pulse to settle.</p>
+
+    <p>Then the screen flickered.</p>
+
+    <p>It wasn't the brightness or the battery. It was the date. The date. It blinked once, like a glitch, then steadied.</p>
+
+    <p>Ceci froze.</p>
+
+    <p>"Nope," she said immediately. "We're not doing that."</p>
+
+    <p>She shoved the phone back into her pocket like the problem would be contained if she refused to look at it. A sound cut through the quiet. There was movement in the trees to her right.</p>
+
+    <p>Fast. Close.</p>
+
+    <p>Her body locked before her brain caught up, and her breath went shallow as something barreled toward her through the underbrush. A flash of red and white. The dog skidded to a halt inches from her boots. Ceci let out a noise that might generously be described as a squeak.</p>
+
+    <p>"Oh my god."</p>
+
+    <p>The dog panted, unbothered by her near-death experience, tail wagging with full-body enthusiasm. It was beautiful. A springer spaniel, all glossy red and white fur, tongue lolled out the side of its mouth as if it had just completed the most important mission of its life, which appeared to be running directly at her.</p>
+
+    <p>"Ginger!"</p>
+
+    <p>The voice came from behind her.</p>
+
+    <p>Sharp. Controlled. Unamused.</p>
+
+    <p>Ceci turned.</p>
+
+    <div class="section-break"><span class="section-break-glyph">❧</span></div>
+
+    <p>And everything shifted.</p>
+
+    <p>The man who strode toward her was not dressed like anyone she had seen in Wales in the year twenty-twenty— she stopped the thought before it finished. He was dressed unlike anyone she had seen recently.</p>
+
+    <p>That was better.</p>
+
+    <p>His coat was too structured, the fabric too heavy. The cut of it sat perfectly across broad shoulders, tailored in a way that read less like fashion and more like expectation. He looked about forty, though at a distance the long, elegant line of him might have suggested someone younger. Up close, that illusion vanished. There was too much gravity in his face, too much lived restraint in the way he held himself. His dark eyes were startlingly clear against the severity of the rest of him, catching her off guard. Dark black hair, slicked neatly back, brushed the edge of his shirt collar and managed to look severe rather than vain. His trousers were similarly precise. His boots were polished despite the wet ground.</p>
+
+    <p>He looked…</p>
+
+    <p>Wrong.</p>
+
+    <p>Wrong in a way no costume could explain.</p>
+
+    <p class="beat">Real wrong.</p>
+
+    <p>He stopped a few feet away, his gaze swept over her in one quick, assessing pass that left her feeling cataloged, filed, and quietly judged.</p>
+
+    <p>"You're not supposed to be here," he said. His voice was low. Even. The kind of voice that assumed it would be listened to.</p>
+
+    <p>Ceci opened her mouth.</p>
+
+    <p>Nothing came out.</p>
+
+    <p>Because now that she looked at him, really looked, another thought pushed through the confusion, cold and immediate: He was right.</p>
+
+    <p>"I," she cleared her throat and tried again. "I'm sorry. I think there's been some kind of misunderstanding."</p>
+
+    <p>His gaze flicked to the gate behind her, then back to her face.</p>
+
+    <p>"That would appear to be the case," he said. The dog, Ginger apparently, pressed happily against Ceci's legs, convinced they were now best friends. Automatically, gratefully, Ceci reached down and sank her fingers into the soft fur behind the dog's ears.</p>
+
+    <p>"Well," she said, because talking was better than not talking, "I was visiting the ruins, and I seem to have…" she gestured vaguely to the ground, her hair, her general state of disarray, "remained here overnight? Which I can assure you was not part of the plan."</p>
+
+    <p>A strong black eyebrow lifted in question.</p>
+
+    <p>"Overnight," he repeated.</p>
+
+    <p>"Yes," she said. "Against my will, I promise. I paid. There was a man. Very committed to not speaking to me, but definitely here."</p>
+
+    <p>His brow furrowed.</p>
+
+    <p>"There is no one stationed at the ruins," he said.</p>
+
+    <p>Ceci blinked.</p>
+
+    <p>"That's…no, there was," she insisted. "Little window, folding chair, three pounds, deeply hostile to small talk?"</p>
+
+    <p>He studied her for a beat longer than was comfortable.</p>
+
+    <p>"You're American."</p>
+
+    <p>It was not a question. Ceci straightened; some instinctive reflex kicked in despite everything else.</p>
+
+    <p>"Yes."</p>
+
+    <p>The word landed with more defensiveness than she intended. His gaze cooled, though not enough to hide the calculation behind it.</p>
+
+    <p>"In that case," he said, "you are either very lost… or very good at inventing stories."</p>
+
+    <p>"Well, I'd love to be the second one," she said, dry, "but unfortunately, I am currently leaning toward the first."</p>
+
+    <p>Ginger huffed happily, leaning her entire weight against Ceci's legs. Ceci scratched behind her ears again. "Hi, Ginger," she murmured, grateful for something in this situation that made immediate, uncomplicated sense.</p>
+
+    <p>"Why," the man said, cutting cleanly through the moment, "are you on my land at six-thirty in the morning?"</p>
+
+    <p>Six-thirty.</p>
+
+    <p>Ceci's head snapped up.</p>
+
+    <p>"That's not…" She glanced instinctively at the sky again. The light. The angle of the sun. The chill in the air. "That can't be right."</p>
+
+    <p>"It is," he said.</p>
+
+    <p>Her stomach dropped.</p>
+
+    <p>"I came here at three," she said. "Yesterday."</p>
+
+    <p>Silence stretched between them.</p>
+
+    <p>Wind moved through the trees, lifting the ends of her damp hair against her back.</p>
+
+    <p>The man watched her. Really watched her, assessing rather than dismissing her.</p>
+
+    <p>Ceci swallowed.</p>
+
+    <p>"Look," she said, forcing her voice into something resembling steadiness, "I know this sounds insane."</p>
+
+    <p>"It does."</p>
+
+    <p>"But I think something is very wrong."</p>
+
+    <p>Another pause.</p>
+
+    <p>His expression changed.</p>
+
+    <p>But not in any way she could immediately name. His irritation went still. He was no longer deciding whether she was foolish. He was deciding whether she was dangerous. Like a piece on a chessboard that has just been moved.</p>
+
+    <p>"Indeed," he said. "I am beginning to think so as well."</p>
+
+    <p>Ginger, apparently satisfied with the seriousness of the moment, sneezed. Ceci let out a small, startled laugh. The man's mouth almost moved.</p>
+
+    <p>"Come," he said, after a beat. "You're in no state to remain out here."</p>
+
+    <p>Ceci hesitated.</p>
+
+    <p>Just for a second.</p>
+
+    <p>Then she looked down at her damp clothes. Her shaking hands. The locked gate. The empty hillside where people should have been. And finally. Back at him. Tall. Controlled. Observant.</p>
+
+    <p>A stranger.</p>
+
+    <p>Possibly the only person who could explain anything.</p>
+
+    <p>Or make it worse.</p>
+
+    <p>"Okay," she said.</p>
+
+    <p>And stepped toward him.</p>
+
+    <div class="section-break"><span class="section-break-glyph">❧</span></div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Sara Mautino writing as Sara Sweeney &nbsp;·&nbsp; <a href="the-year-that-wasnt-hers.html">← Back to <em>The Year That Wasn't Hers</em></a></p>
+  </footer>
+
+</body>
+</html>
