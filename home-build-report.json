@@ -1,0 +1,22 @@
+{
+  "original_commit": "e01e8ad6276698e3db795990d0344f9e80f06637",
+  "assets": {
+    "year-that-wasnt-hers-cover": {
+      "source_sha256": "8a287671f8a99209c773dc78c8058504adcd43ad67cb404d2b29ff83b7b2e397",
+      "width": 900,
+      "height": 1350,
+      "bytes": 237352
+    },
+    "sara-portrait": {
+      "source_sha256": "b4fb5eb4802a84e135cea8482a669f935d76b91d7207be820bdcc89ff35b9378",
+      "width": 799,
+      "height": 1200,
+      "bytes": 106208
+    }
+  },
+  "service_content_preserved": {
+    "authors-desk.html": true,
+    "research-room.html": true,
+    "secondhand-shelf.html": true
+  }
+}
