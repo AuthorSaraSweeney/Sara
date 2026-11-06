@@ -1,0 +1,57 @@
+name: Reading Room Press draft preview
+on:
+  push:
+    branches: [reading-room-press-expansion]
+    paths:
+      - 'tools/build_reading_room_home.py'
+      - 'tools/test_reading_room_home.py'
+      - '.github/workflows/reading-room-draft.yml'
+permissions:
+  contents: write
+concurrency:
+  group: reading-room-draft-preview
+  cancel-in-progress: false
+jobs:
+  draft:
+    if: github.ref == 'refs/heads/reading-room-press-expansion'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: reading-room-press-expansion
+          fetch-depth: 0
+      - name: Install build and browser-test dependencies
+        run: python3 -m pip install beautifulsoup4 Pillow playwright
+      - name: Build draft pages and preserve original artwork
+        run: python3 tools/build_reading_room_home.py
+      - name: Check responsive layouts and navigation
+        run: python3 tools/test_reading_room_home.py
+      - name: Save reviewed draft files to the development branch only
+        run: |
+          test "$(git branch --show-current)" = "reading-room-press-expansion"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html authors-desk.html research-room.html secondhand-shelf.html reading-room-home.css preview.html assets home-build-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Build integrated Reading Room Press homepage and tested full-site preview"
+            git push origin HEAD:reading-room-press-expansion
+          fi
+      - name: Upload preview and verification files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reading-room-draft-review
+          path: |
+            index.html
+            authors-desk.html
+            research-room.html
+            secondhand-shelf.html
+            reading-room-services.css
+            reading-room-home.css
+            research-packages.css
+            preview.html
+            assets/
+            home-build-report.json
+            preview-test-output/
+          retention-days: 7
