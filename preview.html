@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Design preview of three Reading Room Press draft pages.">
+<title>Reading Room Press | Design Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&amp;family=Cormorant+Garamond:wght@400;500;600&amp;family=Lato:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1714;--parchment:#f5f0e8;--paper:#ede5d4;--rust:#7a3b2e;--gold:#b89a5a;--fog:#655e57}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--parchment);color:var(--ink);font:18px/1.65 'Cormorant Garamond',Georgia,serif}a{color:var(--rust)}a:focus-visible{outline:3px solid var(--rust);outline-offset:4px}.skip{position:absolute;top:-80px;left:12px;background:white;padding:8px;z-index:5}.skip:focus{top:12px}header{border-bottom:1px solid var(--gold);background:var(--paper)}.wrap{width:min(100% - 36px,980px);margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0;flex-wrap:wrap}.brand{font:500 17px 'Cinzel',serif;text-decoration:none;color:var(--ink)}.live-link{font:13px 'Lato',sans-serif}.preview-note{margin:0;background:var(--ink);color:var(--parchment);padding:10px 18px;text-align:center;font:12px/1.6 'Lato',sans-serif}.preview-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:20px 18px;border-bottom:1px solid #d8c8ad}.preview-controls label{cursor:pointer;font:14px/1.4 'Lato',sans-serif;padding:12px 18px;border:1px solid #b7a68b;background:#fffaf2;color:var(--ink);border-radius:3px}.preview-controls label:hover{border-color:var(--rust)}.page-choice{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.preview-panel{display:none}
+#view-authors:checked~.preview-controls label[for=view-authors],#view-research:checked~.preview-controls label[for=view-research],#view-shop:checked~.preview-controls label[for=view-shop]{background:var(--rust);border-color:var(--rust);color:white}
+#view-authors:focus-visible~.preview-controls label[for=view-authors],#view-research:focus-visible~.preview-controls label[for=view-research],#view-shop:focus-visible~.preview-controls label[for=view-shop]{outline:3px solid var(--ink);outline-offset:4px}
+#view-authors:checked~main #panel-authors,#view-research:checked~main #panel-research,#view-shop:checked~main #panel-shop{display:block}
+.hero{padding:64px 0 54px;text-align:center}.eyebrow{font:12px 'Lato',sans-serif;letter-spacing:.25em;text-transform:uppercase;color:var(--rust)}h1,h2,h3{font-weight:400;line-height:1.2}h1{font-size:clamp(42px,7vw,76px);margin:14px 0}h2{font-size:37px}h3{font-size:28px}.lead{max-width:700px;margin:0 auto;font-size:24px}.rule{width:90px;border:0;border-top:1px solid var(--gold);margin:38px auto}.section{padding:34px 0 68px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:22px}.card{padding:28px;background:#fffaf2;border:1px solid #d8c8ad}.price{font:500 24px 'Cinzel',serif;color:var(--rust)}.btn{display:inline-block;background:var(--rust);color:white;text-decoration:none;padding:12px 22px;font:14px/1.5 'Lato',sans-serif;margin-top:12px}.fine{font:13px/1.6 'Lato',sans-serif;color:var(--fog)}footer{border-top:1px solid var(--gold);padding:32px 0;font:13px/1.8 'Lato',sans-serif;color:var(--fog)}footer a{overflow-wrap:anywhere}@media(max-width:600px){.hero{padding:42px 0}.nav{align-items:flex-start;gap:12px}.preview-controls{gap:8px;padding:16px 12px}.preview-controls label{font-size:12px;padding:10px 12px}.card{padding:24px}.section{padding:20px 0 42px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<p class="preview-note">DESIGN PREVIEW · These are draft pages. Your live website is unchanged.</p>
+<header><div class="wrap nav"><span class="brand">Reading Room Press</span><a class="live-link" href="https://readingroompress.com/" target="_blank" rel="noopener noreferrer">Open the current live site &#8599;</a></div></header>
+<div class="preview-app" role="group" aria-label="Choose a draft page to preview">
+<input class="page-choice" type="radio" name="preview-page" id="view-authors" aria-controls="panel-authors" checked>
+<input class="page-choice" type="radio" name="preview-page" id="view-research" aria-controls="panel-research">
+<input class="page-choice" type="radio" name="preview-page" id="view-shop" aria-controls="panel-shop">
+<div class="preview-controls"><label for="view-authors">The Author's Desk</label><label for="view-research">The Research Room</label><label for="view-shop">The Secondhand Shelf</label></div>
+<main id="main" tabindex="-1">
+<article class="preview-panel" id="panel-authors" aria-labelledby="title-authors">
+<div class="wrap hero"><p class="eyebrow">Literary services</p><h1 id="title-authors">The Author's Desk</h1><p class="lead">Thoughtful, practical support for independent authors bringing their books into the world.</p><hr class="rule"><p>From the first retailer description to the final publishing checklist, we'll help you navigate the details with confidence.</p></div>
+<section class="section wrap" aria-labelledby="offers"><h2 id="offers">Services</h2><div class="cards">
+<article class="card"><p class="eyebrow">Pilot offering</p><h3>Author Launch Essentials</h3><p class="price">$149</p><p>A polished retailer-ready book description, suggested categories and keywords, and a personalized launch checklist.</p><p class="fine">Includes one consolidated revision. Scope and delivery date confirmed before booking.</p><a class="btn" href="mailto:hello@readingroompress.com?subject=Author%20Launch%20Essentials%20Inquiry">Ask about this service</a></article>
+<article class="card"><p class="eyebrow">Pilot offering</p><h3>Publishing Setup Consultation</h3><p class="price">$99</p><p>A 60-minute virtual consultation about KDP, IngramSpark, and practical publishing preparation, followed by an action checklist.</p><p class="fine">You retain access to and control of your publishing accounts.</p><a class="btn" href="mailto:hello@readingroompress.com?subject=Publishing%20Consultation%20Inquiry">Ask about this service</a></article>
+</div></section>
+<section class="section wrap"><h2>How it works</h2><p>Tell us about your book, your publishing goals, and your timeline. We'll confirm whether the project is a good fit and agree on deliverables, revisions, timing, and payment before work begins.</p><p class="fine">Introductory prices are subject to availability. Publishing decisions and platform approval remain with the author. No sales outcomes are guaranteed.</p></section>
+</article>
+<article class="preview-panel" id="panel-research" aria-labelledby="title-research">
+<div class="wrap hero"><p class="eyebrow">Literary research</p><h1 id="title-research">The Research Room</h1><p class="lead">Well-sourced historical details for stories that deserve to feel lived in.</p><hr class="rule"><p>Bring us a question about a place, period, profession, object, or everyday life. We'll find credible sources and explain what they do and don't establish.</p></div>
+<section class="section wrap" aria-labelledby="research-offer"><h2 id="research-offer">Historical Fiction Research Brief</h2><div class="cards">
+<article class="card"><p class="eyebrow">Pilot offering</p><h3>One question, thoroughly explored</h3><p class="price">$249</p><p>A focused 3–5-page research brief with citations, contextual notes, and a bibliography of approximately 8–12 sources where available.</p><p class="fine">We confirm the research question, source availability, scope, and turnaround before booking. Some topics require a custom quote.</p><a class="btn" href="mailto:hello@readingroompress.com?subject=Historical%20Research%20Brief%20Inquiry">Ask about a research brief</a></article>
+<article class="card"><h3>What might you ask?</h3><p>What would a librarian's daily work have looked like in 1930s Wales? How did people travel between towns? What language would a character have used for an object or occupation?</p><p>Research briefs distinguish supported findings from plausible interpretation and unanswered questions.</p></article>
+</div></section>
+<section class="section wrap"><h2>Research with care</h2><p>Our approach values clear citations, context, and transparency about uncertainty. Research materials are intended to inform your creative work and do not replace legal, medical, or other regulated professional advice.</p></section>
+</article>
+<article class="preview-panel" id="panel-shop" aria-labelledby="title-shop">
+<div class="wrap hero"><p class="eyebrow">Curated secondhand books</p><h1 id="title-shop">The Secondhand Shelf</h1><p class="lead">Well-loved stories deserve another reader.</p><hr class="rule"><p>Discover crime fiction, mysteries, thrillers, and familiar paperback series, thoughtfully gathered for their next home.</p></div>
+<section class="section wrap"><h2>Coming to the shelf</h2><div class="cards"><article class="card"><h3>Mystery &amp; Crime Series</h3><p>Author collections and series bundles, organized so you can spend more time reading and less time searching.</p></article><article class="card"><h3>Secondhand Finds</h3><p>Individual titles and interesting editions will appear here as they're inventoried and checked for condition.</p></article></div></section>
+<section class="section wrap"><h2>Want to hear when the first books are listed?</h2><p>Our collection is being sorted and cataloged. We haven't opened sales yet. You can email us to ask about availability.</p><a class="btn" href="mailto:hello@readingroompress.com?subject=Secondhand%20Shelf%20Book%20Inquiry">Ask about the bookshop</a><p class="fine">Availability, condition, prices, pickup, and shipping details will be provided for individual listings when the shop opens.</p></section>
+</article>
+</main>
+</div>
+<footer><div class="wrap">Reading Room Press · Independent publishing and literary services<br><a href="mailto:hello@readingroompress.com">hello@readingroompress.com</a><p class="fine">Preview only. All three draft pages and their layout styles are included in this file.</p></div></footer>
+</body>
+</html>
