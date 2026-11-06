@@ -2,7 +2,6 @@
 import json
 import shutil
 import subprocess
-import time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -20,6 +19,7 @@ try:
         page.on('pageerror',lambda error: errors.append(str(error)))
         page.goto('http://127.0.0.1:8765/preview.html',wait_until='networkidle')
         page.evaluate('document.fonts.ready')
+        page.evaluate('async()=>{await Promise.all([...document.querySelectorAll("#home img")].map(img=>{img.loading="eager";return img.decode();}));}')
         for width in [1440,1024,900,768,720,390,360,320]:
             page.set_viewport_size({'width':width,'height':900})
             for view in ['home','authors','research','shelf']:
