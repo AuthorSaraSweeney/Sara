@@ -1,0 +1,105 @@
+name: Verify Reading Room Press launch
+on:
+  push:
+    branches: ['qa/services-launch-2026-11-06']
+    paths: ['.github/workflows/reading-room-live-check.yml']
+permissions:
+  contents: read
+jobs:
+  verify-live-site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Verify live content, navigation, styles, and images
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import concurrent.futures
+          import json
+          import time
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit
+          from urllib.request import Request, urlopen
+          BASE = 'https://readingroompress.com/'
+          class Page(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.links = []
+                  self.assets = []
+                  self.text = []
+                  self.ids = set()
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  if 'id' in attrs:
+                      self.ids.add(attrs['id'])
+                  if tag == 'a' and 'href' in attrs:
+                      self.links.append(attrs['href'])
+                  if tag == 'img' and attrs.get('src', '').startswith('assets/'):
+                      self.assets.append(attrs['src'])
+                  if tag == 'link' and attrs.get('rel') == 'stylesheet' and not urlsplit(attrs.get('href', '')).scheme:
+                      self.assets.append(attrs['href'])
+              def handle_data(self, value):
+                  self.text.append(value)
+          def retrieve(path):
+              url = urljoin(BASE, path)
+              request = Request(url, headers={'User-Agent': 'ReadingRoomPress-LaunchCheck/1.0', 'Cache-Control': 'no-cache'})
+              with urlopen(request, timeout=20) as response:
+                  data = response.read()
+                  return {'path': path or '/', 'status': response.status, 'url': response.url, 'bytes': len(data), 'type': response.headers.get_content_type()}, data
+          paths = ['', 'authors-desk.html', 'research-room.html', 'secondhand-shelf.html', 'the-year-that-wasnt-hers.html', 'chapter-1.html']
+          last_error = None
+          for attempt in range(4):
+              try:
+                  with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+                      responses = dict(zip(paths, pool.map(retrieve, paths)))
+                  docs = {}
+                  for path, (meta, data) in responses.items():
+                      assert meta['status'] == 200, meta
+                      doc = Page()
+                      doc.feed(data.decode('utf-8-sig'))
+                      docs[path] = doc
+                  home = ' '.join(docs[''].text)
+                  research = ' '.join(docs['research-room.html'].text)
+                  author = ' '.join(docs['authors-desk.html'].text)
+                  shelf = ' '.join(docs['secondhand-shelf.html'].text)
+                  assert 'Find your place in the Reading Room' in home, 'Homepage has not updated yet'
+                  assert 'Sara Mautino, MSLS' in home and 'Sara Sweeney' in home
+                  assert 'June 17, 2026' in home
+                  assert 'Sara Mautino, MSLS' in research and 'Sara Mautino, MSLS' in author
+                  for text in ['Research Assist', '$50', 'Research Support', '$99–$149', 'Project Research Package', '$199–$249']:
+                      assert text in research, ('Missing research text', text)
+                  assert 'True Crime' in shelf and 'Nonfiction' in shelf
+                  assert 'Sales haven’t opened yet' in shelf
+                  for path in paths[:4]:
+                      doc = docs[path]
+                      for target in ['authors-desk.html', 'research-room.html', 'secondhand-shelf.html']:
+                          assert target in doc.links, ('Missing navigation', path, target)
+                      assert any(link.startswith('mailto:hello@readingroompress.com') for link in doc.links)
+                      for href in doc.links:
+                          parts = urlsplit(href)
+                          if parts.scheme or parts.netloc:
+                              continue
+                          target_path = parts.path
+                          target_key = '' if target_path == 'index.html' else target_path if target_path else path
+                          assert target_key in docs, ('Unknown internal page', path, href)
+                          if parts.fragment:
+                              assert parts.fragment in docs[target_key].ids, ('Broken anchor', path, href)
+                  assets = sorted({asset for path in paths[:4] for asset in docs[path].assets})
+                  with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+                      asset_responses = list(pool.map(retrieve, assets))
+                  for meta, data in asset_responses:
+                      assert meta['status'] == 200 and len(data) > 0, meta
+                      if meta['path'].endswith('.css'):
+                          assert 'text/css' == meta['type'], meta
+                      if meta['path'].endswith('.webp'):
+                          assert 'image/webp' == meta['type'], meta
+                  report = {'passed': True, 'pages': [meta for meta, data in responses.values()], 'assets': [meta for meta, data in asset_responses], 'checks': ['Approved homepage published', 'Professional name and MSLS present', 'All three research prices correct', 'Secondhand collection marked coming soon', 'Shared navigation and internal anchors resolve', 'Business email links present', 'Existing novel and chapter pages accessible', 'Stylesheets and original artwork accessible']}
+                  print(json.dumps(report, indent=2, ensure_ascii=False))
+                  break
+              except Exception as exc:
+                  last_error = exc
+                  print('Verification attempt', attempt + 1, 'failed:', repr(exc), flush=True)
+                  if attempt == 3:
+                      raise
+                  time.sleep(10)
+          PY
