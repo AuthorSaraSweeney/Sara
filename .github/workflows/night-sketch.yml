@@ -1,0 +1,52 @@
+name: Approved Night Truck artwork
+on:
+  push:
+    branches: ['draft/next-novel-teaser']
+    paths: ['night-sketch.css','assets/sunday-best-night-sketch-source.avif','tools/install_night_sketch.py','tools/test_night_sketch.py','.github/workflows/night-sketch.yml']
+permissions:
+  contents: write
+concurrency:
+  group: reading-room-next-novel-draft
+  cancel-in-progress: false
+jobs:
+  integrate-artwork:
+    if: github.ref == 'refs/heads/draft/next-novel-teaser'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: draft/next-novel-teaser
+      - run: python3 -m pip install beautifulsoup4 Pillow playwright
+      - name: Incorporate approved sketch without changing copy
+        run: python3 tools/install_night_sketch.py
+      - name: Verify responsive layouts and artwork
+        run: python3 tools/test_night_sketch.py
+      - name: Save tested preview to draft branch only
+        run: |
+          test "$(git branch --show-current)" = "draft/next-novel-teaser"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html next-novel.html preview.html assets/sunday-best-night-sketch.webp tools/build_next_novel_teaser.py night-sketch-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Incorporate approved Night Truck sketch in teaser and story header'
+            git push origin HEAD:draft/next-novel-teaser
+          fi
+          git log -1 --format='%H'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: night-sketch-review
+          path: |
+            index.html
+            next-novel.html
+            preview.html
+            night-sketch.css
+            next-novel.css
+            reading-room-services.css
+            reading-room-home.css
+            research-packages.css
+            assets/sunday-best-night-sketch.webp
+            night-sketch-report.json
+            night-sketch-review/
+          retention-days: 7
