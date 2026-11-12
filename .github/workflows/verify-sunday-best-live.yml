@@ -1,0 +1,96 @@
+name: Verify live Sunday Best teaser
+on:
+  push:
+    branches: ['qa/sunday-best-live-2026-11-12']
+    paths: ['.github/workflows/verify-sunday-best-live.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 6e45b07f885bff7427ebd5fc392b16da1eb14f56
+          persist-credentials: false
+      - name: Verify public pages and exact approved image
+        run: |
+          python3 - <<'PY'
+          import concurrent.futures, hashlib, json, re, time
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit
+          from urllib.request import Request, urlopen
+          BASE = 'https://readingroompress.com/'
+          class Page(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.text=[]
+                  self.links=[]
+                  self.styles=[]
+                  self.ids=set()
+              def handle_starttag(self, tag, attrs):
+                  a=dict(attrs)
+                  if 'id' in a: self.ids.add(a['id'])
+                  if tag=='a' and 'href' in a: self.links.append(a['href'])
+                  if tag=='link' and a.get('rel')=='stylesheet': self.styles.append(a['href'])
+              def handle_data(self, value): self.text.append(value)
+          def get(path):
+              url=urljoin(BASE,path)+'?release=sunday-best-6e45b07'
+              with urlopen(Request(url,headers={'Cache-Control':'no-cache','User-Agent':'ReadingRoomPress-LaunchCheck/1.0'}),timeout=20) as r:
+                  body=r.read()
+                  assert r.status==200,(path,r.status)
+                  return {'path':path or '/', 'status':r.status,'bytes':len(body),'type':r.headers.get_content_type()},body
+          paths=['','next-novel.html','authors-desk.html','research-room.html','secondhand-shelf.html','the-year-that-wasnt-hers.html','chapter-1.html']
+          for attempt in range(6):
+              try:
+                  with concurrent.futures.ThreadPoolExecutor(max_workers=7) as pool:
+                      responses=dict(zip(paths,pool.map(get,paths)))
+                  docs={}
+                  for path,(meta,data) in responses.items():
+                      doc=Page(); doc.feed(data.decode('utf-8-sig')); docs[path]=doc
+                  home=' '.join(docs[''].text)
+                  story=' '.join(docs['next-novel.html'].text)
+                  exact='Mara learns that accepting his protection may be just as risky as refusing it.'
+                  assert 'next-novel' in docs[''].ids
+                  assert 'next-novel.html' in docs[''].links
+                  assert 'Discover the Story' in home
+                  for phrase in ['Sunday Best','City of Favors','dark mafia romance',exact]:
+                      assert phrase in home and phrase in story,phrase
+                  assert 'One expensive request brings their worlds together.' in home
+                  assert 'Alix’s twin nieces know a patient, playful uncle.' in story
+                  assert 'Georgia’s livelihood is on the line, too.' in story
+                  assert 'For adult readers.' in story
+                  for forbidden in ['niece and nephew','The reading experience','Their friendship and the business they built remain central to the story.','catering job']:
+                      assert forbidden not in story,forbidden
+                  for path in ['', 'authors-desk.html','research-room.html']:
+                      text=' '.join(docs[path].text)
+                      assert 'Sara Mautino, MSLIS' in text,path
+                      assert 'Sara Mautino, MSLS' not in text,path
+                  for path in ['','next-novel.html']:
+                      assert 'night-sketch.css' in docs[path].styles
+                      for href in docs[path].links:
+                          parts=urlsplit(href)
+                          if parts.scheme or parts.netloc: continue
+                          target=parts.path or path
+                          if target=='index.html': target=''
+                          assert target in docs,(path,href)
+                          if parts.fragment: assert parts.fragment in docs[target].ids,(path,href)
+                  assets=['next-novel.css','night-sketch.css','reading-room-services.css','reading-room-home.css','assets/sunday-best-night-sketch.webp']
+                  with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
+                      asset_responses=dict(zip(assets,pool.map(get,assets)))
+                  for path,(meta,data) in asset_responses.items():
+                      expected=Path(path).read_bytes()
+                      assert hashlib.sha256(data).digest()==hashlib.sha256(expected).digest(),('Asset differs from approved version',path)
+                      if path.endswith('.css'): assert meta['type']=='text/css',meta
+                      if path.endswith('.webp'): assert meta['type']=='image/webp' and data[:4]==b'RIFF',meta
+                  css=asset_responses['night-sketch.css'][1].decode()
+                  assert 'sunday-best-night-sketch.webp' in css
+                  print(json.dumps({'passed':True,'published_commit':'6e45b07f885bff7427ebd5fc392b16da1eb14f56','pages':[m for m,b in responses.values()],'assets':[m for m,b in asset_responses.values()],'checks':['Live homepage includes approved synopsis and story link','Expanded story and series page accessible','Twin nieces and revised Georgia paragraph confirmed','Content warning retained and reading-experience section absent','MSLIS preserved','Approved sketch and all CSS match repository exactly','Internal links and anchors resolve','Existing professional services, novel, and sample chapter accessible']},indent=2))
+                  break
+              except Exception as error:
+                  print('Check',attempt+1,repr(error),flush=True)
+                  if attempt==5: raise
+                  time.sleep(10)
+          PY
