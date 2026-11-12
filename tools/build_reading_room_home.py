@@ -211,3 +211,10 @@ assert 'true-crime nonfiction' in home_main
 assert 'June 17, 2026' in home_main
 (ROOT / 'home-build-report.json').write_text(json.dumps(manifest, indent=2) + '\n')
 print(json.dumps(manifest, indent=2))
+
+
+# Preserve the next-novel extension when rebuilding the homepage.
+next_novel_builder = ROOT / "tools/build_next_novel_teaser.py"
+if next_novel_builder.exists():
+    import sys
+    subprocess.run([sys.executable, str(next_novel_builder)], check=True)

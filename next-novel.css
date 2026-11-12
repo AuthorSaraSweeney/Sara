@@ -1,0 +1,64 @@
+
+/* Next novel: a darker companion to the existing parchment and botanical design. */
+.next-feature,.next-hero{--next-night:#18201e;--next-light:#f5efe4;--next-muted:#d1c7b7;--next-copper:#d5a17e;--next-line:#65716a;color:var(--next-light);background:radial-gradient(ellipse at 87% 25%,rgba(139,58,34,.24),transparent 62%),linear-gradient(125deg,#18201e,#202823 65%,#29231f);position:relative;isolation:isolate}
+.next-feature{padding-block:62px;border-block:1px solid #667168;scroll-margin-top:110px}
+.next-feature::before,.next-hero::before{content:'';position:absolute;inset:16px;border:1px solid rgba(213,161,126,.32);pointer-events:none;z-index:-1}
+.next-feature-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:72px;align-items:center}
+.next-feature-label{padding-right:28px;border-right:1px solid var(--next-line)}
+.next-feature .eyebrow,.next-hero .eyebrow{color:var(--next-copper)}
+.next-signature{font:italic 38px/1.25 'IM Fell English',Georgia,serif;color:var(--next-light);margin-top:18px}
+.next-signature span{display:block}
+.next-feature-label .next-genre{font:13px/1.8 var(--ui);color:var(--next-muted);margin-top:22px;max-width:190px}
+.next-progress{display:inline-flex;gap:9px;align-items:center;font:11px/1.6 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--next-muted);margin-top:22px}
+.next-progress::before{content:'';width:6px;height:6px;border:1px solid var(--next-copper);border-radius:50%;flex-shrink:0}
+.next-feature h2{font:500 clamp(39px,4.5vw,58px)/1.08 var(--display);letter-spacing:-.015em;max-width:620px;color:var(--next-light)}
+.next-feature h2 em{color:var(--next-copper)}
+.next-feature-copy>p{font-size:18px;line-height:1.85;color:var(--next-muted);margin-top:23px;max-width:690px}
+.next-feature .next-actions{margin-top:25px}
+.next-actions{display:flex;align-items:stretch;flex-wrap:wrap;gap:14px}
+.next-actions .btn{width:260px;min-height:52px;font-size:13px;gap:16px}
+.next-feature .btn,.next-hero .btn{background:var(--next-light);border-color:var(--next-light);color:var(--next-night)}
+.next-feature .btn:hover,.next-hero .btn:hover{background:#ead9c6;border-color:#ead9c6;color:var(--next-night)}
+.next-feature a:focus-visible,.next-hero a:focus-visible{outline-color:var(--next-copper)}
+.next-backlink{display:inline-flex;align-items:center;gap:10px;padding-block:9px;min-height:44px;font:12px/1.7 var(--ui);color:var(--next-muted);text-decoration:none}
+.next-backlink::before{content:'←';font:18px Georgia,serif}
+.next-backlink:hover{color:white;text-decoration:underline}
+.next-hero{padding-block:30px 66px;text-align:center;border-bottom:1px solid var(--next-line)}
+.next-hero .next-back-row{text-align:left;margin-bottom:26px}
+.next-hero-inner{position:relative;max-width:890px;margin:auto;padding:7px 30px 0}
+.next-hero h1{font:500 clamp(52px,6.5vw,88px)/1.04 var(--display);letter-spacing:-.025em;margin:24px auto 25px;color:var(--next-light);max-width:760px}
+.next-hero h1 em{color:var(--next-copper)}
+.next-hero .next-subtitle{font:italic 22px/1.65 'IM Fell English',Georgia,serif;color:var(--next-muted);max-width:650px;margin-inline:auto}
+.next-divider{height:1px;width:120px;background:var(--next-line);margin:29px auto;position:relative}
+.next-divider::after{content:'';position:absolute;left:calc(50% - 4px);top:-4px;width:8px;height:8px;background:var(--next-night);border:1px solid var(--next-copper);transform:rotate(45deg)}
+.next-byline{font:12px/1.8 var(--ui);text-transform:uppercase;letter-spacing:.18em;color:var(--next-copper)}
+.next-hero .next-progress{margin-top:19px}
+.next-story{padding-block:57px 52px}
+.next-story-layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:67px;align-items:start}
+.next-story-aside{border-top:2px solid var(--moss);padding-top:20px}
+.next-story-aside h2{font-size:34px;margin-top:13px}
+.next-story-aside p:last-child{font:italic 18px/1.65 'IM Fell English',Georgia,serif;color:var(--moss);margin-top:20px}
+.next-synopsis{max-width:730px}
+.next-synopsis p{font-size:19px;line-height:1.85;color:var(--ink)}
+.next-synopsis p+p{margin-top:21px}
+.next-synopsis .next-last-line{font:italic 25px/1.5 'IM Fell English',Georgia,serif;color:var(--rust);padding-top:24px;margin-top:27px;border-top:1px solid var(--rule)}
+.next-people{padding-block:6px 48px}
+.next-character-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+.next-character{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0;position:relative;padding:28px 31px;border:1px solid var(--rule);background:var(--card)}
+.next-character::before{content:'';position:absolute;left:-1px;top:-1px;width:24px;height:24px;border-top:2px solid var(--rust);border-left:2px solid var(--rust)}
+.next-character .eyebrow{font-size:10px;padding-bottom:11px}
+.next-character h3{font-size:35px;padding-bottom:17px}
+.next-character>p:last-child{font-size:17px;line-height:1.8;color:var(--muted);margin:0}
+.next-details{padding:25px 0 28px;border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;list-style:none;margin:0;font:11px/1.7 var(--ui);letter-spacing:.055em;color:var(--moss)}
+.next-details li+li::before{content:'·';margin-right:22px;color:var(--rust)}
+.next-status{padding-block:0 58px}
+.next-status-box{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;border-block:1px solid var(--rule);background:var(--paper-deep);padding:31px 35px}
+.next-status h2{font-size:34px;margin:8px 0 11px}
+.next-status p{font-size:16px;color:var(--muted)}
+.next-status .eyebrow{font-size:10px;color:var(--moss)}
+.next-status .btn{width:250px;min-height:52px;font-size:13px;gap:16px}
+.next-draft-note{font:12px/1.7 var(--ui);background:var(--moss);color:var(--card);text-align:center;padding:11px 18px}
+@supports not (grid-template-rows:subgrid){.next-character{display:flex;flex-direction:column}}
+@media(max-width:1000px){.next-feature-layout{grid-template-columns:220px minmax(0,1fr);gap:40px}.next-story-layout{grid-template-columns:205px minmax(0,1fr);gap:40px}.next-signature{font-size:34px}}
+@media(max-width:760px){.next-feature{padding-block:42px}.next-feature::before,.next-hero::before{inset:10px}.next-feature-layout{grid-template-columns:1fr;gap:25px;padding-inline:12px}.next-feature-label{border-right:0;border-bottom:1px solid var(--next-line);padding:0 0 23px}.next-signature{font-size:29px;margin-top:10px}.next-signature span{display:inline}.next-signature span+span::before{content:' '}.next-feature-label .next-genre{max-width:none;margin-top:12px}.next-feature-label .next-progress{margin-top:12px}.next-feature h2{font-size:44px}.next-feature-copy>p{font-size:17px;margin-top:18px}.next-actions .btn{width:100%;max-width:330px}.next-hero{padding-block:18px 44px}.next-hero .next-back-row{padding-inline:12px;margin-bottom:15px}.next-hero-inner{padding-inline:16px}.next-hero h1{font-size:60px;margin-block:19px 22px}.next-hero .next-subtitle{font-size:20px}.next-hero .eyebrow{font-size:10px}.next-story{padding-block:35px}.next-story-layout{grid-template-columns:1fr;gap:25px}.next-story-aside{padding-top:17px}.next-story-aside h2{font-size:31px}.next-story-aside p:last-child{margin-top:13px;font-size:17px}.next-synopsis p{font-size:17px}.next-synopsis .next-last-line{font-size:23px}.next-character-grid{grid-template-columns:1fr;gap:20px}.next-character{display:block;grid-row:auto;padding:25px}.next-character h3{font-size:32px}.next-people{padding-bottom:34px}.next-details{gap:10px 18px}.next-details li+li::before{content:none}.next-status{padding-bottom:38px}.next-status-box{grid-template-columns:1fr;padding:26px;gap:22px}.next-status .btn{width:100%;max-width:330px}.next-status h2{font-size:31px}}
+@media(max-width:380px){.next-hero h1{font-size:53px}.next-feature h2{font-size:40px}.next-actions .btn,.next-status .btn{font-size:12px}}
