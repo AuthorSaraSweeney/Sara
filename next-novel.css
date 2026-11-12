@@ -80,3 +80,36 @@
 .next-story-approved .next-synopsis p{font:italic 25px/1.6 'IM Fell English',var(--body);color:var(--rust)}
 .next-status .btn{font-size:12px}
 @media(max-width:760px){.next-feature h2.next-book-title{font-size:53px;margin-block:15px}.next-feature-label .next-series{max-width:500px}.next-feature-copy>p{font-size:17px}.next-story-approved{padding-block:32px 35px}.next-story-approved .next-synopsis{margin-top:25px;padding-top:24px}.next-story-approved .next-synopsis p{font-size:22px}.next-hero .next-subtitle{font-size:19px}}
+
+/* Expanded Sunday Best story page. */
+.next-full-story{padding-block:52px 48px}
+.next-full-story .next-story-layout{grid-template-columns:245px minmax(0,1fr);gap:58px}
+.next-full-story .next-story-aside h2{font-size:35px;line-height:1.15}
+.next-full-story .next-synopsis p{font-size:18px;line-height:1.9}
+.next-full-story .next-synopsis .next-last-line{font:italic 25px/1.6 'IM Fell English',var(--body);color:var(--rust)}
+.next-full-people{padding-block:12px 48px}
+.next-full-people .next-character h3{font-size:35px}
+.next-full-people .next-character .eyebrow{min-height:30px}
+.next-life{margin-top:28px;display:grid;grid-template-columns:.7fr 1.3fr;gap:34px;padding:29px 31px;border-block:1px solid var(--rule);background:var(--paper-deep)}
+.next-life h3{font-size:30px;line-height:1.15;margin-top:8px}
+.next-life>p{font-size:17px;line-height:1.85;color:var(--muted);margin:0}
+.next-series-band{background:#101b1d;color:#f2e7d5;padding-block:49px;border-block:1px solid #596a66}
+.next-series-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:58px;align-items:start}
+.next-series-band .eyebrow{color:#b49a68}
+.next-series-band h2{font:500 clamp(38px,4.5vw,55px)/1.1 var(--display);margin:15px 0 18px;color:#f2e7d5}
+.next-series-band .next-series-sub{font:italic 20px/1.65 'IM Fell English',var(--body);color:#cfc5b7;max-width:300px}
+.next-series-body{border-left:1px solid #596a66;padding-left:34px}
+.next-series-body p{font-size:18px;line-height:1.85;color:#ddd3c5}
+.next-series-body p+p{margin-top:20px}
+.next-reader-section{padding-block:47px 45px}
+.next-reader-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.next-reader-item{display:grid;grid-template-rows:subgrid;grid-row:span 2;border-top:2px solid var(--moss);padding-top:20px;min-width:0}
+.next-reader-item:nth-child(2){border-top-color:var(--rust)}
+.next-reader-item h3{font-size:27px;line-height:1.2;padding-bottom:14px}
+.next-reader-item p{font-size:16px;line-height:1.8;color:var(--muted);margin:0}
+.next-reader-note{margin-top:28px;padding:18px 22px;border:1px solid var(--rule);background:var(--paper-deep);font:13px/1.8 var(--ui);color:var(--muted)}
+.next-reader-note strong{color:var(--ink)}
+.next-full-status{padding-bottom:58px}
+@supports not (grid-template-rows:subgrid){.next-reader-item{display:flex;flex-direction:column}}
+@media(max-width:1000px){.next-full-story .next-story-layout{grid-template-columns:215px minmax(0,1fr);gap:35px}.next-series-layout{gap:35px}.next-series-body{padding-left:28px}.next-reader-grid{gap:22px}}
+@media(max-width:760px){.next-full-story{padding-block:35px}.next-full-story .next-story-layout{grid-template-columns:1fr;gap:25px}.next-full-story .next-story-aside h2{font-size:32px}.next-full-story .next-synopsis p{font-size:17px}.next-full-story .next-synopsis .next-last-line{font-size:23px}.next-full-people{padding-block:5px 35px}.next-life{grid-template-columns:1fr;gap:16px;padding:25px;margin-top:23px}.next-life>p{font-size:16px}.next-series-band{padding-block:35px}.next-series-layout{grid-template-columns:1fr;gap:25px}.next-series-body{border-left:0;border-top:1px solid #596a66;padding:23px 0 0}.next-series-band .next-series-sub{max-width:none}.next-series-body p{font-size:17px}.next-reader-section{padding-block:34px}.next-reader-grid{grid-template-columns:1fr;gap:25px}.next-reader-item{display:block;grid-row:auto}.next-reader-item h3{font-size:27px;padding-bottom:11px}.next-reader-note{padding:17px 19px}.next-full-status{padding-bottom:38px}}

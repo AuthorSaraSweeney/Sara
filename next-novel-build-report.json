@@ -3,8 +3,11 @@
   "main_branch_changed": false,
   "book_title": "Sunday Best",
   "series": "City of Favors",
+  "homepage_bytes_unchanged": true,
+  "other_preview_views_unchanged": true,
   "exact_closing_line": "Mara learns that accepting his protection may be just as risky as refusing it.",
-  "approved_copy_verified_in_four_locations": true,
+  "detail_page_words": 709,
+  "homepage_synopsis_not_duplicated": true,
   "protected_files_unchanged": [
     "authors-desk.html",
     "research-room.html",
