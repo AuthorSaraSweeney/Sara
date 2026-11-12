@@ -1,7 +1,6 @@
 """Apply the approved decorative sketch without changing any reader-facing copy."""
 from pathlib import Path
 import base64, hashlib, json, os, re
-from PIL import Image
 from bs4 import BeautifulSoup
 ROOT=Path(__file__).resolve().parents[1]
 os.chdir(ROOT)
@@ -10,9 +9,12 @@ if os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('GITHUB_REF_NAME'
 source=ROOT/'assets/sunday-best-night-sketch-source.avif'
 assert hashlib.sha256(source.read_bytes()).hexdigest()=='0c9df487156dca5df913dbe2f4023ca33d849e1fcfb2c1c7b46978e63bbf82ca', 'Approved artwork checksum mismatch'
 asset=ROOT/'assets/sunday-best-night-sketch.webp'
-with Image.open(source) as im:
-    assert im.size==(1200,675),im.size
-    im.convert('RGB').save(asset,'WEBP',quality=95,method=6)
+# Later copy-only builds can reuse this binary without needing image libraries.
+if not asset.exists():
+    from PIL import Image
+    with Image.open(source) as im:
+        assert im.size==(1200,675),im.size
+        im.convert('RGB').save(asset,'WEBP',quality=95,method=6)
 css=(ROOT/'night-sketch.css').read_text(encoding='utf-8')
 protected=['authors-desk.html','research-room.html','secondhand-shelf.html','chapter-1.html','the-year-that-wasnt-hers.html','reading-room-services.css','reading-room-home.css','research-packages.css','CNAME']
 snapshots={name:(ROOT/name).read_bytes() for name in protected}
