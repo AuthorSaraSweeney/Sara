@@ -206,3 +206,9 @@ assert '\u2014' not in TEASER_MAIN
 report={'built':True,'main_branch_changed':False,'book_title':TITLE,'series':SERIES,'homepage_bytes_unchanged':index_path.read_bytes()==index_before,'other_preview_views_unchanged':True,'exact_closing_line':EXACT_LINE,'detail_page_words':len(parsed(TEASER_MAIN).get_text(' ',strip=True).split()),'homepage_synopsis_not_duplicated':True,'twin_nieces_corrected':True,'reading_experience_removed':True,'content_warning_preserved':True,'protected_files_unchanged':protected_files,'artwork_changed':False,'palette':'Night Truck','new_page':'next-novel.html','preview_view':'upcoming'}
 (ROOT / 'next-novel-build-report.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))
+
+# Preserve the approved Night Truck sketch on future draft rebuilds.
+import subprocess, sys
+artwork_installer = ROOT / "tools/install_night_sketch.py"
+if artwork_installer.exists():
+    subprocess.run([sys.executable, str(artwork_installer)], check=True)

@@ -1,0 +1,25 @@
+{
+  "approved_artwork_source": "noir_food_truck_at_dusk.png",
+  "optimized_size": [
+    1200,
+    675
+  ],
+  "webp_bytes": 41484,
+  "unchanged_page_bodies": [
+    "index.html",
+    "next-novel.html",
+    "preview.html"
+  ],
+  "protected_files_unchanged": [
+    "authors-desk.html",
+    "research-room.html",
+    "secondhand-shelf.html",
+    "chapter-1.html",
+    "the-year-that-wasnt-hers.html",
+    "reading-room-services.css",
+    "reading-room-home.css",
+    "research-packages.css",
+    "CNAME"
+  ],
+  "main_branch_changed": false
+}
