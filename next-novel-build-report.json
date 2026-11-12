@@ -1,11 +1,23 @@
 {
   "built": true,
   "main_branch_changed": false,
-  "featured_novel_preserved": true,
-  "MSLIS_preserved": true,
-  "invented_release_date": false,
-  "invented_book_title": false,
+  "book_title": "Sunday Best",
+  "series": "City of Favors",
+  "exact_closing_line": "Mara learns that accepting his protection may be just as risky as refusing it.",
+  "approved_copy_verified_in_four_locations": true,
+  "protected_files_unchanged": [
+    "authors-desk.html",
+    "research-room.html",
+    "secondhand-shelf.html",
+    "the-year-that-wasnt-hers.html",
+    "chapter-1.html",
+    "reading-room-services.css",
+    "reading-room-home.css",
+    "research-packages.css",
+    "CNAME"
+  ],
+  "artwork_changed": false,
+  "palette": "Night Truck",
   "new_page": "next-novel.html",
-  "homepage_placement": "Immediately after the featured novel",
   "preview_view": "upcoming"
 }

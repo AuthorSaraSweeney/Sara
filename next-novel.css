@@ -62,3 +62,21 @@
 @media(max-width:1000px){.next-feature-layout{grid-template-columns:220px minmax(0,1fr);gap:40px}.next-story-layout{grid-template-columns:205px minmax(0,1fr);gap:40px}.next-signature{font-size:34px}}
 @media(max-width:760px){.next-feature{padding-block:42px}.next-feature::before,.next-hero::before{inset:10px}.next-feature-layout{grid-template-columns:1fr;gap:25px;padding-inline:12px}.next-feature-label{border-right:0;border-bottom:1px solid var(--next-line);padding:0 0 23px}.next-signature{font-size:29px;margin-top:10px}.next-signature span{display:inline}.next-signature span+span::before{content:' '}.next-feature-label .next-genre{max-width:none;margin-top:12px}.next-feature-label .next-progress{margin-top:12px}.next-feature h2{font-size:44px}.next-feature-copy>p{font-size:17px;margin-top:18px}.next-actions .btn{width:100%;max-width:330px}.next-hero{padding-block:18px 44px}.next-hero .next-back-row{padding-inline:12px;margin-bottom:15px}.next-hero-inner{padding-inline:16px}.next-hero h1{font-size:60px;margin-block:19px 22px}.next-hero .next-subtitle{font-size:20px}.next-hero .eyebrow{font-size:10px}.next-story{padding-block:35px}.next-story-layout{grid-template-columns:1fr;gap:25px}.next-story-aside{padding-top:17px}.next-story-aside h2{font-size:31px}.next-story-aside p:last-child{margin-top:13px;font-size:17px}.next-synopsis p{font-size:17px}.next-synopsis .next-last-line{font-size:23px}.next-character-grid{grid-template-columns:1fr;gap:20px}.next-character{display:block;grid-row:auto;padding:25px}.next-character h3{font-size:32px}.next-people{padding-bottom:34px}.next-details{gap:10px 18px}.next-details li+li::before{content:none}.next-status{padding-bottom:38px}.next-status-box{grid-template-columns:1fr;padding:26px;gap:22px}.next-status .btn{width:100%;max-width:330px}.next-status h2{font-size:31px}}
 @media(max-width:380px){.next-hero h1{font-size:53px}.next-feature h2{font-size:40px}.next-actions .btn,.next-status .btn{font-size:12px}}
+
+/* Approved Sunday Best identity and Night Truck palette. */
+.next-feature,.next-hero{--next-night:#101b1d;--next-light:#f2e7d5;--next-muted:#cfc5b7;--next-copper:#b49a68;--next-line:#596a66;background:radial-gradient(ellipse at 88% 20%,rgba(112,43,56,.24),transparent 62%),linear-gradient(125deg,#101b1d,#152226 65%,#121a1e)}
+.next-feature h2.next-book-title{font:500 clamp(45px,4.8vw,65px)/1.06 var(--display);margin:21px 0 19px;letter-spacing:-.025em}
+.next-feature-label .next-series{font:16px/1.7 var(--body);color:var(--next-muted);margin:0}
+.next-series em{color:var(--next-light)}
+.next-feature-copy>p:first-child{margin-top:0}
+.next-feature-copy>p{margin-top:20px;font-size:18px;line-height:1.85}
+.next-feature .btn,.next-hero .btn{color:var(--next-light);background:#702b38;border-color:#b49a68}
+.next-feature .btn:hover,.next-hero .btn:hover{background:#57212c;border-color:var(--next-light);color:var(--next-light)}
+.next-feature .next-progress{font-size:10px;letter-spacing:.04em;text-transform:none}
+.next-hero .next-subtitle{max-width:650px;font-size:21px}
+.next-hero .next-subtitle em{color:var(--next-light)}
+.next-story-approved{padding-block:48px 50px}
+.next-story-approved .next-synopsis{margin:35px auto 0;text-align:center;max-width:780px;border-top:1px solid var(--rule);padding-top:26px}
+.next-story-approved .next-synopsis p{font:italic 25px/1.6 'IM Fell English',var(--body);color:var(--rust)}
+.next-status .btn{font-size:12px}
+@media(max-width:760px){.next-feature h2.next-book-title{font-size:53px;margin-block:15px}.next-feature-label .next-series{max-width:500px}.next-feature-copy>p{font-size:17px}.next-story-approved{padding-block:32px 35px}.next-story-approved .next-synopsis{margin-top:25px;padding-top:24px}.next-story-approved .next-synopsis p{font-size:22px}.next-hero .next-subtitle{font-size:19px}}
