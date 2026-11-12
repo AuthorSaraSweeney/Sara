@@ -2,6 +2,7 @@
 The homepage teaser remains the owner's approved copy, unchanged.
 Source for story details: the author's character and relationship notes.
 The author renamed the city Glennon and approved City of Favors as the series.
+Author correction: Alix has twin nieces. The reading-experience section is removed.
 No deployment, new artwork, release date, excerpt, or future pairing is added.
 """
 from pathlib import Path
@@ -28,6 +29,7 @@ PARAGRAPHS = [
     'One expensive request brings their worlds together. When danger follows, Mara learns that accepting his protection may be just as risky as refusing it.',
 ]
 EXACT_LINE = 'Mara learns that accepting his protection may be just as risky as refusing it.'
+CONTENT_WARNING = 'For adult readers. The story includes explicit intimacy, violence, threats, and a history of financial and emotional abuse.'
 STATUS = 'Coming Soon | In Development'
 BODY = ''.join('<p>' + escape(text) + '</p>' for text in PARAGRAPHS)
 HOME_SECTION = '''
@@ -63,17 +65,11 @@ CSS = css_base + '\n\n' + marker + r'''
 .next-series-body p{font-size:18px;line-height:1.85;color:#ddd3c5}
 .next-series-body p+p{margin-top:20px}
 .next-reader-section{padding-block:47px 45px}
-.next-reader-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
-.next-reader-item{display:grid;grid-template-rows:subgrid;grid-row:span 2;border-top:2px solid var(--moss);padding-top:20px;min-width:0}
-.next-reader-item:nth-child(2){border-top-color:var(--rust)}
-.next-reader-item h3{font-size:27px;line-height:1.2;padding-bottom:14px}
-.next-reader-item p{font-size:16px;line-height:1.8;color:var(--muted);margin:0}
-.next-reader-note{margin-top:28px;padding:18px 22px;border:1px solid var(--rule);background:var(--paper-deep);font:13px/1.8 var(--ui);color:var(--muted)}
+.next-reader-note{margin:0;padding:18px 22px;border:1px solid var(--rule);background:var(--paper-deep);font:13px/1.8 var(--ui);color:var(--muted)}
 .next-reader-note strong{color:var(--ink)}
 .next-full-status{padding-bottom:58px}
-@supports not (grid-template-rows:subgrid){.next-reader-item{display:flex;flex-direction:column}}
-@media(max-width:1000px){.next-full-story .next-story-layout{grid-template-columns:215px minmax(0,1fr);gap:35px}.next-series-layout{gap:35px}.next-series-body{padding-left:28px}.next-reader-grid{gap:22px}}
-@media(max-width:760px){.next-full-story{padding-block:35px}.next-full-story .next-story-layout{grid-template-columns:1fr;gap:25px}.next-full-story .next-story-aside h2{font-size:32px}.next-full-story .next-synopsis p{font-size:17px}.next-full-story .next-synopsis .next-last-line{font-size:23px}.next-full-people{padding-block:5px 35px}.next-life{grid-template-columns:1fr;gap:16px;padding:25px;margin-top:23px}.next-life>p{font-size:16px}.next-series-band{padding-block:35px}.next-series-layout{grid-template-columns:1fr;gap:25px}.next-series-body{border-left:0;border-top:1px solid #596a66;padding:23px 0 0}.next-series-band .next-series-sub{max-width:none}.next-series-body p{font-size:17px}.next-reader-section{padding-block:34px}.next-reader-grid{grid-template-columns:1fr;gap:25px}.next-reader-item{display:block;grid-row:auto}.next-reader-item h3{font-size:27px;padding-bottom:11px}.next-reader-note{padding:17px 19px}.next-full-status{padding-bottom:38px}}
+@media(max-width:1000px){.next-full-story .next-story-layout{grid-template-columns:215px minmax(0,1fr);gap:35px}.next-series-layout{gap:35px}.next-series-body{padding-left:28px}}
+@media(max-width:760px){.next-full-story{padding-block:35px}.next-full-story .next-story-layout{grid-template-columns:1fr;gap:25px}.next-full-story .next-story-aside h2{font-size:32px}.next-full-story .next-synopsis p{font-size:17px}.next-full-story .next-synopsis .next-last-line{font-size:23px}.next-full-people{padding-block:5px 35px}.next-life{grid-template-columns:1fr;gap:16px;padding:25px;margin-top:23px}.next-life>p{font-size:16px}.next-series-band{padding-block:35px}.next-series-layout{grid-template-columns:1fr;gap:25px}.next-series-body{border-left:0;border-top:1px solid #596a66;padding:23px 0 0}.next-series-band .next-series-sub{max-width:none}.next-series-body p{font-size:17px}.next-reader-section{padding-block:34px}.next-reader-note{padding:17px 19px}.next-full-status{padding-bottom:38px}}
 '''
 
 TEASER_MAIN = '''
@@ -92,7 +88,7 @@ TEASER_MAIN = '''
 <section class="wrap next-full-people" aria-labelledby="next-people-heading"><div class="section-heading"><div><p class="eyebrow">Beyond the first impression</p><h2 id="next-people-heading">Meet Mara &amp; Alix</h2></div></div>
 <div class="next-character-grid">
 <article class="next-character"><p class="eyebrow">32 · Chef · Starting over</p><h3>Mara Hayes</h3><p>Sharp-tongued, observant, and warm with the people she lets close. Mara shows affection by feeding people and remembering what they like. She saves every receipt, hates financial surprises, and will work herself into the ground before admitting she needs help.</p></article>
-<article class="next-character"><p class="eyebrow">35 · Developer · Underboss</p><h3>Alix Delorenzi</h3><p>Tailored suits, quiet authority, and violence kept under tight control. Alix’s niece and nephew know a patient, playful uncle. The people who do business with his family know someone very different. Both sides of him are real.</p></article>
+<article class="next-character"><p class="eyebrow">35 · Developer · Underboss</p><h3>Alix Delorenzi</h3><p>Tailored suits, quiet authority, and violence kept under tight control. Alix’s twin nieces know a patient, playful uncle. The people who do business with his family know someone very different. Both sides of him are real.</p></article>
 </div>
 <aside class="next-life" aria-labelledby="next-life-heading"><div><p class="eyebrow">The life worth protecting</p><h3 id="next-life-heading">Sunday Best belongs to two women.</h3></div><p>Georgia Price helped Mara turn the truck from a dream into a business. They are equal partners, with Mara running the kitchen and Georgia handling customers, schedules, and the work that keeps them moving. The danger that follows Mara reaches Georgia, too. Their friendship and the business they built remain central to the story.</p></aside>
 </section>
@@ -100,14 +96,9 @@ TEASER_MAIN = '''
 <div><p class="eyebrow">A new interconnected series</p><h2 id="next-series-heading">City of Favors</h2><p class="next-series-sub">The families, the people they love, and the obligations between them.</p></div>
 <div class="next-series-body"><p>In Glennon, the Delorenzis’ influence runs through downtown property, development, and hospitality. Along the working riverfront, the Kellehers have their own history and claim to power. As old industrial land becomes valuable again, the boundaries between them are harder to keep.</p><p><em>City of Favors</em> follows the romances woven through these families and their wider circle of friends, allies, and rivals. Some people inherit the obligations. Others become entangled with them through the people they love.</p><p><em>Sunday Best</em> begins with Mara and Alix. Future books will follow other couples into different corners of this connected world.</p></div>
 </div></section>
-<section class="wrap next-reader-section" aria-labelledby="next-reader-heading"><div class="section-heading"><div><p class="eyebrow">The reading experience</p><h2 id="next-reader-heading">Danger, desire, and difficult choices.</h2></div></div>
-<div class="next-reader-grid">
-<article class="next-reader-item"><h3>Attraction before trust</h3><p>The chemistry arrives before either of them is ready for it. Emotional trust develops through friction, vulnerability, and the choices they make when it would be easier to take control.</p></article>
-<article class="next-reader-item"><h3>A heroine with a life to keep</h3><p>Mara has a home, a livelihood, and a friendship that matter before Alix enters the picture. Falling in love means finding room for him without surrendering those parts of herself.</p></article>
-<article class="next-reader-item"><h3>Family ties with consequences</h3><p>Business, loyalty, and personal history reach into every relationship. The criminal intrigue puts pressure on a romance that remains at the center of the book.</p></article>
-</div>
+<aside class="wrap next-reader-section" aria-label="Content warning">
 <p class="next-reader-note"><strong>For adult readers.</strong> The story includes explicit intimacy, violence, threats, and a history of financial and emotional abuse.</p>
-</section>
+</aside>
 <section class="wrap next-status next-full-status" aria-labelledby="next-status-heading"><div class="next-status-box"><div><p class="eyebrow">Sunday Best · City of Favors</p><h2 id="next-status-heading">Coming Soon | In Development</h2><p>The manuscript is in progress. The cover and release date have not been announced.</p></div><a class="btn secondary" href="index.html#featured-book">Explore the Published Novel</a></div></section>
 </main>
 '''
@@ -190,14 +181,16 @@ for filename,selector in [('index.html','#next-novel'),('preview.html','#home #n
 for filename,selector in [('next-novel.html','main'),('preview.html','#upcoming')]:
     region=parsed((ROOT / filename).read_text()).select_one(selector)
     text=region.get_text(' ',strip=True)
-    assert len(text.split()) > 550, ('Insufficient additional detail',filename)
     assert text.count(EXACT_LINE)==1
     for paragraph in PARAGRAPHS:
         assert paragraph not in text, ('Copied homepage paragraph',filename)
-    for required in ['Georgia Price','equal partners','underboss','Kellehers','Glennon','City of Favors','dark mafia romance','explicit intimacy']:
+    for required in ['Georgia Price','equal partners','underboss','Kellehers','Glennon','City of Favors','dark mafia romance','Alix’s twin nieces know a patient, playful uncle.']:
         assert required in text,(filename,required)
-    for forbidden in ['catering job','Her trust','isn’t for sale','Brightwater','set in Glennon','Daniel','abduction','staged fire','three-month transition']:
+    for forbidden in ['catering job','Her trust','isn’t for sale','Brightwater','set in Glennon','Daniel','abduction','staged fire','three-month transition','niece and nephew','The reading experience','Attraction before trust','A heroine with a life to keep','Family ties with consequences']:
         assert forbidden not in text,(filename,forbidden)
+    assert not region.select('.next-reader-grid, .next-reader-item, #next-reader-heading'), ('Reading-experience section remains', filename)
+    notes=region.select('.next-reader-note')
+    assert len(notes)==1 and notes[0].get_text(' ',strip=True)==CONTENT_WARNING, ('Content warning changed',filename)
 for filename in ['index.html','next-novel.html','preview.html']:
     soup=parsed((ROOT / filename).read_text(encoding='utf-8'))
     ids=[el['id'] for el in soup.find_all(id=True)]
@@ -210,6 +203,6 @@ for filename in ['index.html','next-novel.html','preview.html']:
 for name,data in protected_bytes.items():
     assert (ROOT / name).read_bytes()==data,('Protected file changed',name)
 assert '\u2014' not in TEASER_MAIN
-report={'built':True,'main_branch_changed':False,'book_title':TITLE,'series':SERIES,'homepage_bytes_unchanged':index_path.read_bytes()==index_before,'other_preview_views_unchanged':True,'exact_closing_line':EXACT_LINE,'detail_page_words':len(parsed(TEASER_MAIN).get_text(' ',strip=True).split()),'homepage_synopsis_not_duplicated':True,'protected_files_unchanged':protected_files,'artwork_changed':False,'palette':'Night Truck','new_page':'next-novel.html','preview_view':'upcoming'}
+report={'built':True,'main_branch_changed':False,'book_title':TITLE,'series':SERIES,'homepage_bytes_unchanged':index_path.read_bytes()==index_before,'other_preview_views_unchanged':True,'exact_closing_line':EXACT_LINE,'detail_page_words':len(parsed(TEASER_MAIN).get_text(' ',strip=True).split()),'homepage_synopsis_not_duplicated':True,'twin_nieces_corrected':True,'reading_experience_removed':True,'content_warning_preserved':True,'protected_files_unchanged':protected_files,'artwork_changed':False,'palette':'Night Truck','new_page':'next-novel.html','preview_view':'upcoming'}
 (ROOT / 'next-novel-build-report.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))
